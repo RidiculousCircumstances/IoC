@@ -1,6 +1,7 @@
-import ExampleProvider from '../modules/example/example.provider.mjs';
+import { exampleProvider } from '../modules/example/example.provider.mjs';
 import { ServiceProvider } from '../framework/serviceProvider.mjs';
 import { loggerProvider } from '../modules/logger/logger.provider.mjs';
+import { routingProvider } from '../modules/routing/routing.provider.mjs';
 
 /**
  * @typedef AppConfig
@@ -11,12 +12,12 @@ import { loggerProvider } from '../modules/logger/logger.provider.mjs';
 /** @type {AppConfig}  */
 const appConfig = {//дает возможность регулировать очередность подключения провайдеров
 	providers: [
-		ExampleProvider,
-		loggerProvider
+		exampleProvider,
+		loggerProvider,
+		routingProvider
 	],
 	foo: 'FOO'
 }
-
 
 
 export default appConfig;

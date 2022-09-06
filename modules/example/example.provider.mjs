@@ -55,4 +55,4 @@ class ExampleProvider extends ServiceProvider {
 	}
 }
 
-export default new ExampleProvider();
+export const exampleProvider = new ExampleProvider();

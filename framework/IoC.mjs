@@ -13,7 +13,7 @@ export default class IoC {
 			throw new Error(`Required resolver with token ${token} does not exists`)
 		}
 		if(this._resolvedInstances[token]) {// проверяем, есть ли экземпляр инстанса в синглтон-пулле
-			console.log('Будет выдан синглтон ' + token)
+			// console.log('Будет выдан синглтон ' + token)
 			return this._resolvedInstances[token];
 		}
 		let instance = this._resolvers[token](this); //вызываем резолвер по токену. резолверу передан контейнер на всякий случай, 
@@ -29,7 +29,7 @@ export default class IoC {
 		}
 
 		if(this._isSingleton[token]) {
-			console.log('Создан инстанс синглтона ' + token)
+			// console.log('Создан инстанс синглтона ' + token)
 			this._resolvedInstances[token] = instance;
 		}
 
@@ -38,19 +38,19 @@ export default class IoC {
 	}
 
 	bind(token, resolver) {
-		console.log(`Резолвер ${token} успешно зарегистрирован`)
+		// console.log(`Резолвер ${token} успешно зарегистрирован`)
 		this._resolvers[token] = resolver; //инстанс решается путем вызовом некоторого резолвера
 	}
 
 	singleton(token, resolver) {
-		console.log(`Резолвер ${token} является синглтоном`)
+		// console.log(`Резолвер ${token} является синглтоном`)
 		this._isSingleton[token] = true;
 		this.bind(token, resolver);
 	}
 
 	resolving(token, handler) { //метод для регистрации хэндлеров. Когда мы будем создавать новый инстанс, будут вызываться все хэндлеры
 		//зарегистрированные под конкретный токен. Изначально его может не существовать.
-		console.log(`Handler для ${token} зарегистрирован!`)
+		// console.log(`Handler для ${token} зарегистрирован!`)
 		this._resolvingHandlers[token] = this._resolvingHandlers[token] ? [...this._resolvingHandlers[token], handler] : [handler];
 	}
 
